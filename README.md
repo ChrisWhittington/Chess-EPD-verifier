@@ -9,7 +9,7 @@ brute force code. Important feature is that it works, basically.
 The idea is for a self-contained module which also has all the chess necessary code for legality checking.
 
 Objective is to get chess engine programmers and all engines actually fully verifying the EPDs they use. There's 
-a lot of EPDs out there, many of which contain bad data and we can't rely on our data imputs being perfect,
+a lot of EPDs out there, many of which contain bad data and we can't rely on our data inputs being perfect,
 when they often aren't.
 
 The code to port into an engine would be:
