@@ -22,18 +22,18 @@ The code to port into an engine would be:
     char* LoadFEN(GAMEDATA* gd, char* fen);
     
 it returns a ptr to the end of the EPD data (for further processing, maybe, depends on what you're doing)
-and a structure (gd) consisting of piece bitboards and position status flags
-see definition of GAMEDATA structure
+and a structure (gd) consisting of piece bitboards and position status flags.
+see definition of GAMEDATA structure.
 On EPD fail returns a zero pointer.
 
-Actual FEN string is remorselessly checked
-w/b string likewise
-the following fields can be missing from the EPD, then just get set with obvious defaults
-castling status is set permissively (do what EPD says, but override on chess integrity fail)
-ep square, likewise
-move number, set to allowable limits as EPD says
-rule50 likewise
-personally, for purposes of engine, some may like to set those fields to 0 1 and override the EPD, there's
+Actual FEN string is remorselessly checked,
+w/b string likewise.
+the following fields can be missing from the EPD, then just get set with obvious defaults.
+castling status is set permissively (do what EPD says, but override on chess integrity fail).
+ep square, likewise.
+move number, set to allowable limits as EPD says.
+rule50 likewise.
+for purposes of engine functionality, some may like to set those fields to 0 1 and override the EPD, there's
 a compile switch to handle that.
 
 finally, position checked for side to move not in check. done by sets of routines that don't
@@ -42,5 +42,6 @@ An alternative would be to perform the legality check using own engine code (hey
 that anyway, no?). 
 
 There's a bunch of EPD test positions (credited where author is known) to provide code
-integrity testing. Obvs you can junk these when using the code in an engine main() runs all that stuff.
+integrity testing. Obvs you can junk these when using the code in an engine.
+main() runs all that stuff.
 
