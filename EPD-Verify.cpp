@@ -2031,6 +2031,13 @@ int minint(int a, int b)
 	return b;
 }
 
+int maxint(int a, int b)
+{
+	if (a > b) return a;
+	return b;
+}
+
+
 //
 // decodes FEN as 6-part string
 // highly tolerant of errors, enforces rules of normal chess
@@ -2242,7 +2249,15 @@ char* LoadFEN(GAMEDATA* gd, char* fen)
 	// test validity rule50 (clear on error)
 	if ((gd->rule50 >= NORMALRULE50) || (gd->rule50 < 0)) gd->rule50 = 0;
 	// moveno must be >= rule50 and minimum 1
-	gd->moveno = minint(1, gd->moveno);
+	gd->moveno = maxint(gd->rule50, gd->moveno);
+	gd->moveno = maxint(1, gd->moveno);
+	
+	// there's an argument for an engine to set these fields to 0 1 and override anything in the EPD
+	// obvs each programmer can decide for himself, for various reasons the author prefers 0 1, so ...
+	#if 1
+	gd->rule50 = 0;
+	gd->moveno = 1;
+	#endif
 
 	// ep square needs to be correct rank for colour, empty, in front pawn of same colour, behind empty (clear on error)
 	int ep_sq = gd->epsquare;
